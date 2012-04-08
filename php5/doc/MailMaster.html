@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class MailMaster</title>
+			<link rel="stylesheet" href="stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+		</head>
+		<body>
+			<div class="page-body">
+<h2 class="class-name">Class MailMaster</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MailMaster REST API.</p>
+<p class="description"><p>A MailMaster REST API egy részének példa megvalósítása. Az  kód szabadon felhasználható és módosítható. Az osztály  jelenleg a következő API funkciókat valósítja meg: <ul><li>subscribe</li><li>unsubscribe</li><li>list</li><li>update</li><li>delete</li></ul>  Használatához szükséges <ul><li>legalább PHP5.2</li><li>JSON extension</li><li>cURL extension</li></ul>  Példa  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$mailmaster&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="">MailMaster</a></span><span class="src-sym">(</span><span class="src-var">$list_id</span><span class="src-sym">,&nbsp;</span><span class="src-var">$form_id</span><span class="src-sym">,&nbsp;</span><span class="src-var">$user</span><span class="src-sym">,&nbsp;</span><span class="src-var">$passw</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$fields&nbsp;</span>=&nbsp;<span class="src-var">$db</span><span class="src-sym">-&gt;</span><span class="src-id">get_row</span><span class="src-sym">(</span><span class="src-var">$query</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$mailmaster</span><span class="src-sym">-&gt;</span><span class="src-id">fields&nbsp;</span>=&nbsp;<span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'mail'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'email'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'login'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'user_name'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$row_id&nbsp;</span>=&nbsp;<span class="src-var">$mailmaster</span><span class="src-sym">-&gt;</span><a href="#methodsubscribe">subscribe</a><span class="src-sym">(</span><span class="src-var">$fields</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$mailmaster</span><span class="src-sym">-&gt;</span><a href="#methodupdate">update</a><span class="src-sym">(</span><span class="src-var">$row_id</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'email'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'foo@bar.com'</span><span class="src-sym">,</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$mailmaster</span><span class="src-sym">-&gt;</span><a href="#methodupdate">update</a><span class="src-sym">(</span><span class="src-str">'foo@bar.com'</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'user_name'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'foo'</span><span class="src-sym">,</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$mailmaster</span><span class="src-sym">-&gt;</span><a href="#methodupdate">update</a><span class="src-sym">(</span><span class="src-str">'user_name'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'bar'</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'user_name'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'foo'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;</div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$list&nbsp;</span>=&nbsp;<span class="src-var">$mailmaster</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$address&nbsp;</span>=&nbsp;<span class="src-var">$mailmaster</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-var">$row_id</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$address&nbsp;</span>=&nbsp;<span class="src-var">$mailmaster</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-str">'foo@bar.com'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-var">$address&nbsp;</span>=&nbsp;<span class="src-var">$mailmaster</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-str">'user_name'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'foo'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Balogh Tibor &lt;<a href="mailto:balti@aion.hu">balti@aion.hu</a>&gt;</li>
+				<li><span class="field">copyright:</span> AionNext Kft. http://aion.hu</li>
+				<li><span class="field">license:</span> GPLv3</li>
+			</ul>
+
+
+		<pre></pre>
+
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">
+			<div class="method-summary">
+
+												<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#delete" title="details" class="method-name">delete</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">stdClass</span>
+										<a href="#get" title="details" class="method-name">get</a>
+											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">stdClass</span>
+										<a href="#list" title="details" class="method-name">list</a>
+											([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#send_request" title="details" class="method-name">send_request</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span> = <span class="var-default">'POST'</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#subscribe" title="details" class="method-name">subscribe</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#unsubscribe" title="details" class="method-name">unsubscribe</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#update" title="details" class="method-name">update</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>])
+									</div>
+								</div>
+		</div>
+	</div>
+
+
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methoddelete" id="delete"><!-- --></a>
+<div class="evenrow">
+
+	<div class="method-header">
+		<span class="method-title">delete</span> (line <span class="line-number">220</span>)
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Felhasználó törlése.</p>
+<p class="description"><p>A megadott felhasználó tényleges törlése a címlistáról. A metódus többféle  paraméterrel is meghívható.</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methoddelete">delete</a><span class="src-sym">(</span><span class="src-num">52</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methoddelete">delete</a><span class="src-sym">(</span><span class="src-str">'bar@company.com'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methoddelete">delete</a><span class="src-sym">(</span><span class="src-str">'name'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Csepregi&nbsp;Balázs'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> 0 - sikertelen, 1 - sikeres törlés.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			delete
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">NULL</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$field</span><span class="var-description">: Int - címlista sorazonosító, String - emailcím vagy String - mezőnév.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: Mezőnév megadásakor a mező értéke, egyébként elhagyandó.</span>			</li>
+				</ul>
+
+
+	</div>
+<a name="methodget" id="get"><!-- --></a>
+<div class="oddrow">
+
+	<div class="method-header">
+		<span class="method-title">get</span> (line <span class="line-number">302</span>)
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Cím vagy címlista lekérése.</p>
+<p class="description"><p>A metódus visszaadja a teljes címlistát vagy a címlista kért rekordját.  A metódus alias neve: list, többféle paraméterrel is meghívható.</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-str">'foo@company.com'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-str">'email'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'foo@company.com'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-num">12</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-str">'id'</span><span class="src-sym">,&nbsp;</span><span class="src-num">12</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodget">get</a><span class="src-sym">(</span><span class="src-str">'name'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Csepregi&nbsp;Balázs'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A rekord jellemzői, hiba esetén NULL.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+
+	<div class="method-signature">
+		<span class="method-result">stdClass</span>
+		<span class="method-name">
+			get
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">NULL</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$field</span><span class="var-description">: Int - Címazonosító, String - emailcím vagy String - mezőnév.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: Mezőnév esetén az érték, ami alapján azonosítani lehet a kért rekordot.</span>			</li>
+				</ul>
+
+
+	</div>
+<a name="methodlist" id="list"><!-- --></a>
+<div class="evenrow">
+
+	<div class="method-header">
+		<span class="method-title">list</span> (line <span class="line-number">281</span>)
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Cím vagy címlista lekérése.</p>
+<p class="description"><p>A get metódus aliasa.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A rekord jellemzői, hiba esetén NULL.</li>
+				<li><span class="field">see:</span> <a href="#methodget">MailMaster::get()</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+
+	<div class="method-signature">
+		<span class="method-result">stdClass</span>
+		<span class="method-name">
+			list
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span> = <span class="var-default">NULL</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">NULL</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$field</span><span class="var-description">: Int - Címazonosító, String - emailcím vagy String - mezőnév.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: Mezőnév esetén az érték, ami alapján azonosítani lehet a kért rekordot.</span>			</li>
+				</ul>
+
+
+	</div>
+<a name="methodsend_request" id="send_request"><!-- --></a>
+<div class="oddrow">
+
+	<div class="method-header">
+		<span class="method-title">send_request</span> (line <span class="line-number">335</span>)
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Kérés küldése.</p>
+<p class="description"><p>Kérés küldése a MailMaster szerver felé.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A válasz json dekódolt része.</li>
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			send_request
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$data</span> = <span class="var-default">NULL</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$method</span> = <span class="var-default">'POST'</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$url</span><span class="var-description">: Kért erőforrás azonosító.</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$data</span><span class="var-description">: Küldendő adatok.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$method</span><span class="var-description">: A kérés típusa, GET, POST, DELETE stb. NULL küldendő adat esetén mindig GET.</span>			</li>
+				</ul>
+
+
+	</div>
+<a name="methodsubscribe" id="subscribe"><!-- --></a>
+<div class="evenrow">
+
+	<div class="method-header">
+		<span class="method-title">subscribe</span> (line <span class="line-number">175</span>)
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Feliratkozás.</p>
+<p class="description"><p>Címadatok küldése a címlistára. Az 'email' mező megadása kötelező  a feliratkozás megadásához. A rekord a feliratkozáskor aktív.</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodsubscribe">subscribe</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'email'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'foo@company.com'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodsubscribe">subscribe</a><span class="src-sym">(</span><span class="src-key">array</span><span class="src-sym">(</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'email'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'foo@company.com'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-str">'name'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'Csepregi&nbsp;Balázs'</span><span class="src-sym">,</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A rekord azonosítója, hiba esetén: -1 - létező emailcím, -2 - hibás email, 0 - egyéb hiba, NULL - hibás művelet.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			subscribe
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$fields</span><span class="var-description">: Név-érték párok.</span>			</li>
+				</ul>
+
+
+	</div>
+<a name="methodunsubscribe" id="unsubscribe"><!-- --></a>
+<div class="oddrow">
+
+	<div class="method-header">
+		<span class="method-title">unsubscribe</span> (line <span class="line-number">195</span>)
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Leíratkozás.</p>
+<p class="description"><p>Az adott felhasználó inaktívvá tétele a címlistában. A metódus többféle  paraméterrel is meghívható.</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodunsubscribe">unsubscribe</a><span class="src-sym">(</span><span class="src-num">52</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodunsubscribe">unsubscribe</a><span class="src-sym">(</span><span class="src-str">'foo@company.com'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodunsubscribe">unsubscribe</a><span class="src-sym">(</span><span class="src-str">'name'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Csepregi&nbsp;Balázs'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> 0 - sikertelen, 1 sikeres leiratkozás.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			unsubscribe
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span> = <span class="var-default">NULL</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$field</span><span class="var-description">: Int - címlista címazonosító, String - emailcím vagy String - mezőnév.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: Mezőnév megadásakor a mező értéke, egyébként elhagyandó.</span>			</li>
+				</ul>
+
+
+	</div>
+<a name="methodupdate" id="update"><!-- --></a>
+<div class="evenrow">
+
+	<div class="method-header">
+		<span class="method-title">update</span> (line <span class="line-number">247</span>)
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Címlista rekordok módosítása.</p>
+<p class="description"><p>A metódus az azonosított rekordban módosítja az átadott mezőket.  A megadott paramétereknek pontosan egy rekordot kell azonosítaniuk.</p><p>A metódus többféle paraméterrel is meghívható.  <div class="src-code"><ol><li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodupdate">update</a><span class="src-sym">(</span><span class="src-num">52</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'email'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'foo@company.com'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodupdate">update</a><span class="src-sym">(</span><span class="src-str">'bar@company.com'</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'email'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'foo@company.com'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;<span class="src-var">$mm</span><span class="src-sym">-&gt;</span><a href="#methodupdate">update</a><span class="src-sym">(</span><span class="src-str">'name'</span><span class="src-sym">,&nbsp;</span><span class="src-str">'Csepregi&nbsp;Balázs'</span><span class="src-sym">,&nbsp;</span><span class="src-key">array</span><span class="src-sym">(</span><span class="src-str">'email'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'foo@company.com'</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> A módosított rekorodk száma, hiba esetén NULL.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			update
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$field</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$fields</span> = <span class="var-default">NULL</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$field</span><span class="var-description">: Int - címlista sorazonosító, String - emailcím vagy String - mezőnév.</span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: Mezőnév megadásakor, a mező értéke, egyébként elhagyható.</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$fields</span><span class="var-description">: Módosítandó név-érték párok.</span>			</li>
+				</ul>
+
+
+	</div>
+
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 28 May 2011 16:33:53 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>
