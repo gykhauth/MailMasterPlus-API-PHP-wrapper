@@ -1,0 +1,6 @@
+This is a PHP wrapper for the MailMasterPlus online marketing automation tool API.
+
+There are separete version for PHP4 and PHP5. Use the one according to your environment's PHP version.
+You can find detailed description for each version in the doc subdir.
+
+API wrapper is created by our partner: AionNext Kft. (www.aion.hu)
