@@ -189,7 +189,7 @@ class MailMaster {
 	function delete($field, $value = NULL) {
 		if ((string)(int)$field !== (string)$field || isset($value)) {
 			$result = $this->get($field, $value);
-			$field = (int)@$result->id;
+			$field = (int)@$result[0]->id;
 		}
 		
 		$url = $this->api_url."delete/{$this->list_id}/record/$field";
